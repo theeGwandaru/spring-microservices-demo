@@ -7,6 +7,7 @@ import com.munene.orderservice.domain.OrderStatus;
 import com.munene.orderservice.repository.OrderRepository;
 import com.munene.orderservice.service.OrderService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -19,7 +20,7 @@ public class OrderServiceImpl implements OrderService {
     @Autowired
     private RestTemplate paymentRestTemplate;
 
-    private String PAYMENT_ENDPOINT_URL = "http://localhost:8083/payments";
+    private String PAYMENT_ENDPOINT_URL = "http://PAYMENT-SERVICE/payments";
 
     @Override
     public OrderDto create(OrderDto orderDto) {
